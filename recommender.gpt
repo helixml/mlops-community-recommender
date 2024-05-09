@@ -9,7 +9,7 @@ Get all the content.
 
 Recommend content that the user would like based on their preferences and persona, e.g. their job title, history, experience, interests, etc.
 
-Return a csv file containing the columns "url,justification" where the url is the link to the content (based on the youtube video id) and the justification is a sentence explaining to the user why we thought they would like that content.
+Return a json list containing objects with keys "url" and "justification" where the url is the link to the content (based on the youtube video id) and the justification is a sentence explaining to the user why we thought they would like that content.
 
 ---
 name: get-enriched-user-profile
