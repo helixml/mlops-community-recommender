@@ -1,0 +1,257 @@
+tools: get-enriched-user-profile, get-all-content
+# TODO: add get-content (filtered by topics detected by this gptscript so we're
+# not downloading all the data every time)
+args: email: Email address of user to recommend content for
+
+Fetch the enriched user profile for the user based on their email address.
+
+Get all the content.
+
+Recommend content that the user would like based on their preferences and persona, e.g. their job title, history, experience, interests, etc.
+
+Return a csv file containing the columns "url,justification" where the url is the link to the content (based on the youtube video id) and the justification is a sentence explaining to the user why we thought they would like that content.
+
+---
+name: get-enriched-user-profile
+description: Get the JSON enriched data of a given user's email address
+args: email: Email address of the user to get the enriched user profile for
+
+#!/bin/bash
+
+cat << EOF
+{
+    "public_identifier": "williamhgates",
+    "profile_pic_url": "https://media-exp1.licdn.com/dms/image/C4D03AQHqRRhVsnaziA/profile-displayphoto-shrink_200_200/0/1626063510328?e=1640217600&v=beta&t=6sSKthJwkNGWUV2-V-8BQzirJFe7wBUCEuq7ZiE447A",
+    "background_cover_image_url": "https://media-exp1.licdn.com/dms/image/C4D16AQHCmaRo1aaK2w/profile-displaybackgroundimage-shrink_200_800/0/1626063499170?e=1640217600&v=beta&t=TAwSSpIkYPG2ybh1caSxUYOHG92j5xPoxSyoWhvEsEQ",
+    "first_name": "Bill",
+    "last_name": "Gates",
+    "full_name": "Bill Gates",
+    "occupation": "Co-chair at Bill & Melinda Gates Foundation",
+    "headline": "Co-chair, Bill & Melinda Gates Foundation",
+    "summary": "Co-chair of the Bill & Melinda Gates Foundation. Founder of Breakthrough Energy. Co-founder of Microsoft. Voracious reader. Avid traveler. Active blogger.",
+    "country": "US",
+    "country_full_name": "United States of America",
+    "city": "Seattle",
+    "state": "Washington",
+    "experiences": [
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 1,
+                "year": 2000
+            },
+            "ends_at": null,
+            "company": "Bill & Melinda Gates Foundation",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/bill-&-melinda-gates-foundation",
+            "title": "Co-chair",
+            "description": null,
+            "location": null,
+            "logo_url": "https://media-exp1.licdn.com/dms/image/C4E0BAQE7Na_mKQhIJg/company-logo_100_100/0/1633731810932?e=1642636800&v=beta&t=hItj5lRZS_QmopnwbW-g_ihhjEHgQCgYA7KLrz-cRNw"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 1,
+                "year": 2015
+            },
+            "ends_at": null,
+            "company": "Breakthrough Energy",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/breakthrough-energy",
+            "title": "Founder",
+            "description": null,
+            "location": null,
+            "logo_url": "https://media-exp1.licdn.com/dms/image/C4D0BAQGwD9vNu044FA/company-logo_100_100/0/1601560874941?e=1642636800&v=beta&t=WjzyQOPWUjX6ZCjKo6BUNErMtBWcLVpE4rvTSYc7fBI"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 1,
+                "year": 1975
+            },
+            "ends_at": null,
+            "company": "Microsoft",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/microsoft",
+            "title": "Co-founder",
+            "description": null,
+            "location": null,
+            "logo_url": "https://media-exp1.licdn.com/dms/image/C560BAQE88xCsONDULQ/company-logo_100_100/0/1618231291419?e=1642636800&v=beta&t=MAq_qy-nRaL6rKgjUK2guITFDoNZKUA68gibX9vF2S8"
+        }
+    ],
+    "education": [
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 1,
+                "year": 1973
+            },
+            "ends_at": {
+                "day": 31,
+                "month": 12,
+                "year": 1975
+            },
+            "field_of_study": null,
+            "degree_name": null,
+            "school": "Harvard University",
+            "description": null,
+            "logo_url": "https://media-exp1.licdn.com/dms/image/C4E0BAQF5t62bcL0e9g/company-logo_100_100/0/1519855919126?e=1642636800&v=beta&t=Y6xmp31gvJUu_n6fuinB56w9xduD6RlmUj7vXVCZeQ4"
+        },
+        {
+            "starts_at": null,
+            "ends_at": null,
+            "field_of_study": null,
+            "degree_name": null,
+            "school": "Lakeside School",
+            "description": null,
+            "logo_url": "https://media-exp1.licdn.com/dms/image/C4D0BAQENlfOPKBEk3Q/company-logo_100_100/0/1519856497259?e=1642636800&v=beta&t=r9w6E_bExlNGB7feracny_Lm8qeOFN_blwnYDilef6g"
+        }
+    ],
+    "languages": [],
+    "accomplishment_organisations": [],
+    "accomplishment_publications": [],
+    "accomplishment_honors_awards": [],
+    "accomplishment_patents": [],
+    "accomplishment_courses": [],
+    "accomplishment_projects": [],
+    "accomplishment_test_scores": [],
+    "volunteer_work": [],
+    "certifications": [],
+    "connections": 8,
+    "people_also_viewed": [],
+    "recommendations": [],
+    "activities": [
+        {
+            "title": "Reaching net zero will take bold action and creativity to accelerate the development of climate-smart technologies. The first cohort of Breakthrough…",
+            "link": "https://www.linkedin.com/signup/cold-join",
+            "activity_status": "Shared by Bill Gates"
+        },
+        {
+            "title": "There are many reasons why students don't go to college or pursue a postsecondary degree. College Advising Corps is providing guidance and support to…",
+            "link": "https://www.linkedin.com/signup/cold-join",
+            "activity_status": "Shared by Bill Gates"
+        },
+        {
+            "title": "Microsoft supports strong climate and clean energy provisions in US budget reconciliation and infrastructure bills and encourages Congress to take…",
+            "link": "https://www.linkedin.com/signup/cold-join",
+            "activity_status": "Liked by Bill Gates"
+        }
+    ],
+    "similarly_named_profiles": [
+        {
+            "name": "Bill Gates",
+            "link": "https://www.linkedin.com/in/bill-gates-610",
+            "summary": "Currently looking for Opportunity and Advancements.",
+            "location": "Whitehall, PA"
+        },
+        {
+            "name": "Bill Gates",
+            "link": "https://www.linkedin.com/in/bill-gates-50939b1a1",
+            "summary": "Janitor at Bill Gates Associates",
+            "location": "Tompkins County, NY"
+        },
+        {
+            "name": "Bill Gates",
+            "link": "https://www.linkedin.com/in/bill-gates-b3320919",
+            "summary": "GATES Solid Gold Investments ,Inc  LLC",
+            "location": "Santa Rosa, CA"
+        },
+        {
+            "name": "Bill Gates",
+            "link": "https://www.linkedin.com/in/bill-gates-b1a606b0",
+            "summary": "Maricopa County/PING Golf",
+            "location": "Phoenix, AZ"
+        }
+    ],
+    "articles": [
+        {
+            "title": "How to use vaccines more fairly and effectively",
+            "link": "https://www.linkedin.com/pulse/how-use-vaccines-more-fairly-effectively-bill-gates",
+            "published_date": {
+                "day": 13,
+                "month": 1,
+                "year": 2021
+            },
+            "author": "By Bill Gates",
+            "image_url": "https://media-exp1.licdn.com/dms/image/C4D12AQE3UotyMzc87Q/article-cover_image-shrink_180_320/0/1634143523512?e=1640217600&v=beta&t=EFDRPoc3O9vDIfnwGkD4EaaoCXJpatIO0kxjGMxuzGA"
+        },
+        {
+            "title": "Innovation and Inequity | 2021 Goalkeepers Report",
+            "link": "https://www.linkedin.com/pulse/innovation-inequity-2021-goalkeepers-report-bill-gates",
+            "published_date": {
+                "day": 14,
+                "month": 1,
+                "year": 2021
+            },
+            "author": "By Bill Gates",
+            "image_url": "https://media-exp1.licdn.com/dms/image/C4D12AQF4STKts6wKuw/article-cover_image-shrink_180_320/0/1631638325036?e=1640217600&v=beta&t=e8HIAtzYVSi6Bas0BjlSK0NQ7oXSmPTZIicTAkDGBLk"
+        },
+        {
+            "title": "How to fight malaria during a pandemic",
+            "link": "https://www.linkedin.com/pulse/how-fight-malaria-during-pandemic-bill-gates",
+            "published_date": {
+                "day": 25,
+                "month": 1,
+                "year": 2021
+            },
+            "author": "By Bill Gates",
+            "image_url": "https://media-exp1.licdn.com/dms/image/C4D12AQHIypYcSh9X5A/article-cover_image-shrink_180_320/0/1629916418149?e=1640217600&v=beta&t=fYySRiVx78oYH0T2gxrqOj11ujNX4ye0VRJx0jMhhQo"
+        }
+    ]
+}
+EOF
+
+---
+name: get-all-content
+description: Get all of the available content as a csv file containing date, video id, description and thumbnail
+
+#!/bin/bash
+
+cat << EOF
+Published,Video ID,Title,Thumbnail
+2023-10-03 12:29:57,mlrs8pe9QLI,"Building an ML Platform: Insights, Community, and Advocacy // Stephen Batifol // MLOps Podcast #178",https://i.ytimg.com/vi/mlrs8pe9QLI/hqdefault.jpg
+2023-10-04 13:30:03,gFjBJozwSrs,LLM Security //Raahul Dutta &amp; Uri Shamay &amp; Sankalp Gilda // Mini Summit #1,https://i.ytimg.com/vi/gFjBJozwSrs/hqdefault.jpg
+2023-10-09 13:00:27,k5mq8A9F82s,#mlops #ai #machinelearning #llm,https://i.ytimg.com/vi/k5mq8A9F82s/hqdefault.jpg
+2023-10-10 12:59:57,RHn1VlXJ7CU,Adventures in Building CLIP &amp; Other (Largeish) LMs // Sachin Abeywardana // MLOps Podcast #180,https://i.ytimg.com/vi/RHn1VlXJ7CU/hqdefault.jpg
+2023-10-11 15:28:01,tiBra7w8Xr4,#mlops #ai #machinelearning #llm,https://i.ytimg.com/vi/tiBra7w8Xr4/hqdefault.jpg
+2023-10-13 13:00:30,QwRy4G8ikJc,#mlops #ai #machinelearning #llm,https://i.ytimg.com/vi/QwRy4G8ikJc/hqdefault.jpg
+2023-10-16 13:00:37,hrbSJ2OCNyY,#mlops #machinelearning #ai #llm,https://i.ytimg.com/vi/hrbSJ2OCNyY/hqdefault.jpg
+2023-10-17 13:40:07,KNx8Gz0LGRk,"MLOps@GetYourGuide // Jean Machado, Meghana Satish, Olivia Houghton, Theodore Meynard// Podcast #182",https://i.ytimg.com/vi/KNx8Gz0LGRk/hqdefault.jpg
+2023-10-18 13:01:36,Jailr5z3AeE,What Drives GenAI Development in the Next 3 Years // Euro Beinat // LLMs in Production Conference 3,https://i.ytimg.com/vi/Jailr5z3AeE/hqdefault.jpg
+2023-10-20 10:24:07,mTVNE0Sw5vI,Automating Data Annotation with LLMs // LLMs in Production Conference 3 Workshop1,https://i.ytimg.com/vi/mTVNE0Sw5vI/hqdefault.jpg
+2023-10-23 14:44:52,7OVRL8752M8,Unlocking Real-World LLM Use Cases // Hamsa Buvaraghan // LLMs in Prod Con Part III Lightning Talk 5,https://i.ytimg.com/vi/7OVRL8752M8/hqdefault.jpg
+2023-10-24 13:20:03,kZ2si-e0dPk,Translating Business Goals into Product Decisions // Richa Sachdev // MLOps Podcast #184,https://i.ytimg.com/vi/kZ2si-e0dPk/hqdefault.jpg
+2023-10-25 10:13:36,PcTbBxOeL4g,"Amplifying Impact with Generative AI: Insights from 10,000 Colleagues // Paul van der Boor // Talk 4",https://i.ytimg.com/vi/PcTbBxOeL4g/hqdefault.jpg
+2023-10-26 16:15:14,vAt-FGqHSn0,Insights on Real-Time ML and Its Impact on Traffic Predictions // Ketan Umare // Podcast clip #183,https://i.ytimg.com/vi/vAt-FGqHSn0/hqdefault.jpg
+2023-10-27 13:14:39,er_-K483X40,LLM Valley // Lilly Chen // LLMs in Production Conference III Lightning Talk,https://i.ytimg.com/vi/er_-K483X40/hqdefault.jpg
+2023-10-27 13:14:56,O-UUy0ZiaBI,Efficient Serving of LLMs for Experimentation and Production with Fireworks.ai // Dmytro Dzhulgakov,https://i.ytimg.com/vi/O-UUy0ZiaBI/hqdefault.jpg
+2023-10-31 13:00:11,p5F7v-w4EN0,The Future of Feature Stores and Platforms // Mike Del Balso &amp; Josh Wills //  MLOps Podcast # 186,https://i.ytimg.com/vi/p5F7v-w4EN0/hqdefault.jpg
+2023-11-02 10:16:35,4iAw8eUMlt8,Data Quality’s Impact on Large Language Models // Mona Rakibe &amp; Maxim Lukichev // LLMs III Talk,https://i.ytimg.com/vi/4iAw8eUMlt8/hqdefault.jpg
+2023-11-02 10:16:44,vWyESyTiabw,Addressing Privacy and the GDPR in LLM Applications // Pieter Luitjens // LLMs III Lightning Talk,https://i.ytimg.com/vi/vWyESyTiabw/hqdefault.jpg
+2023-11-02 10:16:52,uXA7cfSWFng,From Building Self-driving Cars to Building LLM Applications // Effy Zhang //LLMs III Lightning Talk,https://i.ytimg.com/vi/uXA7cfSWFng/hqdefault.jpg
+2023-11-03 09:54:33,qKBfWm3Z1oY,Deploying LLMs on Structured Data Tasks: Lessons from the Trenches // Laurel Orr // LLMs III Talk,https://i.ytimg.com/vi/qKBfWm3Z1oY/hqdefault.jpg
+2023-11-06 00:31:55,AzMzwSkhYHc,TimeGPT: The First Foundation Model for Time Series // Azul Garza // LLMs III Lightning Talk,https://i.ytimg.com/vi/AzMzwSkhYHc/hqdefault.jpg
+2023-11-07 09:15:53,jbUGkzHtgOk,Product Engineering for LLMs // LLMs in Production Conference Part III // Panel 2,https://i.ytimg.com/vi/jbUGkzHtgOk/hqdefault.jpg
+2023-11-07 09:16:14,iUB7otetx_E,GenAI: An Unreliable Information Store // Noble Ackerson // LLMs in Production Conference III Talk,https://i.ytimg.com/vi/iUB7otetx_E/hqdefault.jpg
+2023-11-07 13:00:10,IafvCmYZ0eA,Impact of LLMs on the Tech Stack and Product Development // Anand Das // MLOps Podcast #188,https://i.ytimg.com/vi/IafvCmYZ0eA/hqdefault.jpg
+2023-11-08 10:22:05,eUukO8sKHV4,"The State of Open Source AI: Deployment Engines, Licences, &amp; Hardware // Casper da Costa-Luis // LT",https://i.ytimg.com/vi/eUukO8sKHV4/hqdefault.jpg
+2023-11-08 13:00:43,kDtWzO-6BJI,#mlops #machinelearning #ai #llm,https://i.ytimg.com/vi/kDtWzO-6BJI/hqdefault.jpg
+2023-11-10 13:00:05,_VKMQ-tRJ_4,Designing for Forward Compatibility in Gen AI // Rohit Agarwal // MLOps Podcast #189,https://i.ytimg.com/vi/_VKMQ-tRJ_4/hqdefault.jpg
+2023-11-10 13:00:31,RXjMC2y4__s,#mlops #machinelearning #ai #llm,https://i.ytimg.com/vi/RXjMC2y4__s/hqdefault.jpg
+2023-11-14 13:00:09,u-VCfL3l_lw,Guarding LLM and NLP APIs: A Trailblazing Odyssey for Enhanced Security //Ads Dawson // Podcast #190,https://i.ytimg.com/vi/u-VCfL3l_lw/hqdefault.jpg
+2023-11-22 13:00:08,79FOajKg0xI,MLOps Community: LLMs Mini Summit // MLOps Mini Summit Meetup #3,https://i.ytimg.com/vi/79FOajKg0xI/hqdefault.jpg
+2023-11-30 13:02:36,YLYjU3itqLQ,Cambrium&#39;s Material Biotech Innovations // Pierre Salvy // MLOps Podcast #193 clip,https://i.ytimg.com/vi/YLYjU3itqLQ/hqdefault.jpg
+2023-12-11 12:53:58,aX141RhTxeA,#mlops #machinelearning #Union #Flyte,https://i.ytimg.com/vi/aX141RhTxeA/hqdefault.jpg
+2023-12-13 13:00:17,Ls7iYaf4dRY,#mlops #machinelearning #Union #Flyte,https://i.ytimg.com/vi/Ls7iYaf4dRY/hqdefault.jpg
+2023-12-15 13:00:01,0K3NuxxaGJY,#mlops #machinelearning #Union #Flyte,https://i.ytimg.com/vi/0K3NuxxaGJY/hqdefault.jpg
+2023-12-22 13:00:08,1TnVU3CME7I,The Role of Infrastructure in ML Leveraging Open Source // Niels Bantilan // MLOps Podcast #197,https://i.ytimg.com/vi/1TnVU3CME7I/hqdefault.jpg
+2023-12-29 13:00:09,ezWdXzhwH8A,Challenges Operationalizing ML (And Some Solutions) // Nathan Ryan Frank // MLOps Podcast #199,https://i.ytimg.com/vi/ezWdXzhwH8A/hqdefault.jpg
+2024-01-23 13:00:10,tz8xi3u0lu8,RAG Has Been Oversimplified // Yujian Tang // MLOps Podcast #206,https://i.ytimg.com/vi/tz8xi3u0lu8/hqdefault.jpg
+2024-01-24 17:58:04,OTpdenHM7cU,Challenging Big Data Assumptions // Hannes Mühleisen &amp; Jordan Tigani // MLOps Podcast #202 clip,https://i.ytimg.com/vi/OTpdenHM7cU/hqdefault.jpg
+2024-01-26 13:00:08,xWApMuyct_4,How Data Platforms Affect ML &amp; AI // Jake Watson // MLOps Podcast #207,https://i.ytimg.com/vi/xWApMuyct_4/hqdefault.jpg
+2024-02-08 15:15:08,q3x-eWfChIM,Mitigating LLM hallucinations paper breakdown,https://i.ytimg.com/vi/q3x-eWfChIM/hqdefault.jpg
+2024-02-14 12:58:51,LzUI3Xk-qE0,DSPy: Understanding Stacking and Chaining Networks in Language Models // Omar Khattab,https://i.ytimg.com/vi/LzUI3Xk-qE0/hqdefault.jpg
+2024-02-16 16:56:26,k6G3lSw1Jls,The AI Engineer Song,https://i.ytimg.com/vi/k6G3lSw1Jls/hqdefault.jpg
+2024-02-21 12:00:10,vM9p9DVcpDg,Evaluating and Integrating ML Models // Morgan McGuire and Anish Shah // MLOps Podcast #213,https://i.ytimg.com/vi/vM9p9DVcpDg/hqdefault.jpg
+2024-02-28 14:53:45,w3Ew2tTDGwo,LLM Use Cases in Production // AI in Production Conference // Panel 1,https://i.ytimg.com/vi/w3Ew2tTDGwo/hqdefault.jpg
+2024-03-01 13:00:47,87qxhsi5wYU,Becoming an AI Evangelist // Alex Volkov // MLOps Podcast #215,https://i.ytimg.com/vi/87qxhsi5wYU/hqdefault.jpg
+2024-03-08 18:19:27,8uZst7pgOw0,The Real E2E RAG Stack // Sam Bean // MLOps Podcast #217,https://i.ytimg.com/vi/8uZst7pgOw0/hqdefault.jpg
+EOF
