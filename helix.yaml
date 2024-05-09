@@ -1,0 +1,9 @@
+# From https://github.com/helixml/example-helix-app/blob/main/helix.yaml
+
+name: MLOps Community Recommender
+description: Recommend content to MLOps Community Users
+assistants:
+- name: Recommender
+  description: GPTScript Recommender
+  gptscripts:
+    - file: *.gpt
