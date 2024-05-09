@@ -6,4 +6,4 @@ assistants:
 - name: Recommender
   description: GPTScript Recommender
   gptscripts:
-    - file: *.gpt
+    - file: "*.gpt"
